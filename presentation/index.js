@@ -4,24 +4,16 @@ import React from "react";
 // Import Spectacle Core tags
 import {
   Appear,
-  BlockQuote,
-  Cite,
   CodePane,
   Deck,
-  Fill,
   Heading,
   Image,
-  Layout,
-  Link,
   ListItem,
   List,
-  Markdown,
-  Quote,
   Slide,
-  Spectacle,
-  Text
+  Spectacle
 } from "spectacle";
-import CodeSlide from 'spectacle-code-slide';
+import CodeSlide from "spectacle-code-slide";
 
 // Import image preloader util
 import preloader from "spectacle/lib/utils/preloader";
@@ -29,15 +21,15 @@ import preloader from "spectacle/lib/utils/preloader";
 // Import theme
 import createTheme from "spectacle/lib/themes/default";
 
-// Import custom component
-import Interactive from "../assets/interactive";
-
 // Require CSS
 require("normalize.css");
 require("spectacle/lib/themes/default/index.css");
 
 
 const images = {
+  dockerLogo: require("../assets/moby.svg"),
+  sampleApp: require("../assets/sample-app.png"),
+
   city: require("../assets/city.jpg"),
   kat: require("../assets/kat.png"),
   logo: require("../assets/formidable-logo.svg"),
@@ -47,129 +39,207 @@ const images = {
 preloader(images);
 
 const theme = createTheme({
-  primary: "#ff4081"
+  primary: "#52b2e4"
 });
 
 export default class Presentation extends React.Component {
   render() {
     return (
       <Spectacle theme={theme}>
-        <Deck transition={["zoom", "slide"]} transitionDuration={500}>
-          <Slide transition={["zoom"]} bgColor="primary">
-            <Heading size={1} fit caps lineHeight={1} textColor="black">
-              Spectacle
+        <Deck transition={["slide"]} transitionDuration={500} progress="number">
+          <Slide>
+            <Image src={images.dockerLogo.replace("/", "")} margin="0px auto 40px" height="293px"/>
+            <Heading size={1} caps textColor="white">
+              Docker
             </Heading>
-            <Heading size={1} fit caps>
-              A ReactJS Presentation Library
+            <Heading size={4} caps textColor="white">
+              Artur Ptaszek
             </Heading>
-            <Heading size={1} fit caps textColor="black">
-              Where You Can Write Your Decks In JSX
+            <Heading size={6} caps textColor="white">
+              @Synergy Codes
             </Heading>
-            <Link href="https://github.com/FormidableLabs/spectacle">
-              <Text bold caps textColor="tertiary">View on Github</Text>
-            </Link>
-            <Text textSize="1.5em" margin="20px 0px 0px" bold>Hit Your Right Arrow To Begin!</Text>
-          </Slide>
-          <Slide transition={["slide"]} bgColor="black" notes="You can even put notes on your slide. How awesome is that?">
-            <Image src={images.kat.replace("/", "")} margin="0px auto 40px" height="293px"/>
-            <Heading size={2} caps fit textColor="primary" textFont="primary">
-              Wait what?
+            <Heading size={6} textColor="white">
+              29.08.2016r.
             </Heading>
           </Slide>
-          <CodeSlide
-            transition={[]}
-            lang="jsx"
-            ranges={[
-              { loc: [0, 270], title: "Walking through some code" },
-              { loc: [0, 1], title: "The Beginning" },
-              { loc: [1, 2] },
-              { loc: [1, 2], note: "Heres a note!" },
-              { loc: [2, 3] }
-            ]}
-            code={require("raw!../assets/deck.example")}
-          />
-          <Slide transition={["slide"]} bgImage={images.city.replace("/", "")} bgDarken={0.75}>
-            <Appear fid="1">
-              <Heading size={1} caps fit textColor="primary">
-                Full Width
-              </Heading>
-            </Appear>
-            <Appear fid="2">
-              <Heading size={1} caps fit textColor="tertiary">
-                Adjustable Darkness
-              </Heading>
-            </Appear>
-            <Appear fid="3">
-              <Heading size={1} caps fit textColor="primary">
-                Background Imagery
-              </Heading>
-            </Appear>
-          </Slide>
-          <Slide transition={["zoom", "fade"]} bgColor="primary">
-            <Heading caps fit>Flexible Layouts</Heading>
-            <Layout>
-              <Fill>
-                <Heading size={4} caps textColor="secondary" bgColor="white" margin={10}>
-                  Left
-                </Heading>
-              </Fill>
-              <Fill>
-                <Heading size={4} caps textColor="secondary" bgColor="white" margin={10}>
-                  Right
-                </Heading>
-              </Fill>
-            </Layout>
-          </Slide>
-          <Slide transition={["slide"]} bgColor="black">
-            <BlockQuote>
-              <Quote>Wonderfully formatted quotes</Quote>
-              <Cite>Ken Wheeler</Cite>
-            </BlockQuote>
-          </Slide>
-          <Slide transition={["spin", "zoom"]} bgColor="tertiary">
-            <Heading caps fit size={1} textColor="primary">
-              Inline Markdown
-            </Heading>
-            <Markdown>
-              {`
-![Markdown Logo](${images.markdown.replace("/", "")})
 
-You can write inline images, [Markdown Links](http://commonmark.org), paragraph text and most other markdown syntax
-* Lists too!
-* With ~~strikethrough~~ and _italic_
-* And lets not forget **bold**
-              `}
-            </Markdown>
-          </Slide>
-          <Slide transition={["slide", "spin"]} bgColor="primary">
-            <Heading caps fit size={1} textColor="tertiary">
-              Smooth
+          <Slide>
+            <Heading size={1} caps>
+              What is Docker?
             </Heading>
-            <Heading caps fit size={1} textColor="secondary">
-              Combinable Transitions
-            </Heading>
-          </Slide>
-          <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
             <List>
-              <Appear><ListItem>Inline style based theme system</ListItem></Appear>
-              <Appear><ListItem>Autofit text</ListItem></Appear>
-              <Appear><ListItem>Flexbox layout system</ListItem></Appear>
-              <Appear><ListItem>React-Router navigation</ListItem></Appear>
-              <Appear><ListItem>PDF export</ListItem></Appear>
-              <Appear><ListItem>And...</ListItem></Appear>
+              <Appear><ListItem>Alpine Linux based (only 85MB)/Window Server Core (not that light :P)</ListItem></Appear>
+              <Appear><ListItem>Light Virtualization Technology</ListItem></Appear>
+              <Appear><ListItem>Container solution</ListItem></Appear>
+              <Appear><ListItem>Works on Linux, OS X, Windows</ListItem></Appear>
             </List>
           </Slide>
-          <Slide transition={["slide"]} bgColor="primary">
-            <Heading size={1} caps fit textColor="tertiary">
-              Your presentations are interactive
+
+          <Slide>
+            <Heading size={1} caps>
+              Why?
             </Heading>
-            <Interactive/>
+            <List>
+              <Appear><ListItem>DevOps</ListItem></Appear>
+              <Appear><ListItem>Microservices</ListItem></Appear>
+              <Appear><ListItem>Lighter than VM</ListItem></Appear>
+              <Appear><ListItem>"Production" infrastructure on your computer</ListItem></Appear>
+            </List>
           </Slide>
-          <Slide transition={["spin", "slide"]} bgColor="tertiary">
-            <Heading size={1} caps fit lineHeight={1.5} textColor="primary">
-              Made with love in Seattle by
+
+          <Slide>
+            <Heading size={1} caps>
+              Docker tools
             </Heading>
-            <Link href="http://www.formidablelabs.com"><Image width="100%" src={images.logo}/></Link>
+            <List>
+              <Appear><ListItem>Docker Hub</ListItem></Appear>
+              <Appear><ListItem>Docker Machine</ListItem></Appear>
+              <Appear><ListItem>Docker Compose</ListItem></Appear>
+              <Appear><ListItem>Docker Swarm</ListItem></Appear>
+              <Appear><ListItem>Docker Toolbox</ListItem></Appear>
+              <Appear><ListItem>Docker Cloud</ListItem></Appear>
+            </List>
+          </Slide>
+
+          <Slide>
+            <Heading size={1} caps>
+              THE APP
+            </Heading>
+            <Image src={images.sampleApp.replace("/", "")} margin="0px auto 40px" height="500px"/>
+          </Slide>
+
+          <Slide>
+            <Heading size={1} caps>
+              THE APP
+            </Heading>
+            <List>
+              <Appear><ListItem>Frontend: ReactJS</ListItem></Appear>
+              <Appear><ListItem>Backend: NodeJS</ListItem></Appear>
+              <Appear><ListItem>DB: Mongo + maybe ElasticSearch</ListItem></Appear>
+            </List>
+          </Slide>
+
+          <Slide>
+            <Heading size={1} caps>
+              THE APP
+            </Heading>
+            <Heading size={3} textColor="white">
+              problems
+            </Heading>
+            <List>
+              <Appear><ListItem>How to deploy to Cloud?</ListItem></Appear>
+              <Appear><ListItem>How to debug "production" environment?</ListItem></Appear>
+              <Appear><ListItem>How to scale?</ListItem></Appear>
+              <Appear><ListItem>What if I want to create microservices?</ListItem></Appear>
+              <Appear><ListItem>What if I have already built base environment?</ListItem></Appear>
+            </List>
+          </Slide>
+
+          <Slide>
+            <Heading size={1} caps>
+              THE APP
+            </Heading>
+            <Heading size={3} textColor="white">
+              structure
+            </Heading>
+            <CodePane source={`
+              client/Dockerfile
+              client/.dockerignore
+              server/Dockerfile
+              server/.dockerignore
+              docker-compose.yml
+            `}
+            />
+          </Slide>
+
+          <CodeSlide
+            transition={[]}
+            lang="docker"
+            code={require("raw!../assets/client-Dockerfile")}
+            ranges={[
+              { loc: [0, 14], title: "Frontend Dockerfile" },
+              { loc: [0, 1], title: "Base image" },
+              { loc: [3, 4], title: "Workdir" },
+              { loc: [6, 7], title: "Copy" },
+              { loc: [8, 10], title: "Build" },
+              { loc: [11, 12], title: "Ports" },
+              { loc: [12, 13], title: "Command" }
+            ]}
+          />
+
+          <CodeSlide
+            transition={[]}
+            lang="docker"
+            code={require("raw!../assets/server-Dockerfile")}
+            ranges={[
+              { loc: [0, 14], title: "Backend Dockerfile" },
+              { loc: [0, 1], title: "Base image" },
+              { loc: [3, 4], title: "Workdir" },
+              { loc: [5, 6], title: "Copy" },
+              { loc: [6, 7], title: "Package installation" },
+              { loc: [9, 10], title: "Ports" },
+              { loc: [10, 11], title: "Command" }
+            ]}
+          />
+
+          <Slide bgColor="black">
+            <Heading size={1} textColor="white">
+              Building first image
+            </Heading>
+            <Heading size={2} fit textColor="white" textFont="Monospace" margin="50px 0px">
+              docker build -t our-first-docker-app .
+            </Heading>
+          </Slide>
+
+          <Slide bgColor="black">
+            <Heading size={1} textColor="white">
+              Running first container
+            </Heading>
+            <Heading size={2} fit textColor="white" textFont="Monospace" margin="50px 0px">
+              docker run -p 8080:8080 our-first-docker-app
+            </Heading>
+          </Slide>
+
+          <Slide bgColor="black">
+            <Heading size={1} textColor="white">
+              Debugging first container
+            </Heading>
+            <Heading size={2} fit textColor="white" textFont="Monospace" margin="50px 0px">
+              docker run -it our-first-docker-app /bin/bash
+            </Heading>
+          </Slide>
+
+          <Slide>
+            <Heading size={1} caps fit>
+              Docker compose
+            </Heading>
+          </Slide>
+
+          <CodeSlide
+            transition={[]}
+            lang="yaml"
+            code={require("raw!../assets/docker-compose.yml")}
+            ranges={[
+              { loc: [0, 100], title: "Docker Compose" },
+              { loc: [22, 100], title: "Database" },
+              { loc: [12, 22], title: "Backend" },
+              { loc: [2, 11], title: "Frontend" }
+            ]}
+          />
+
+          <Slide bgColor="black">
+            <Heading size={1} textColor="white">
+              Running docker-compose
+            </Heading>
+            <Heading size={2} fit textColor="white" textFont="Monospace" margin="50px 0px">
+              docker-compose up
+            </Heading>
+          </Slide>
+
+          <Slide>
+            <Heading size={1} caps fit>
+              Dzięki :)
+            </Heading>
           </Slide>
         </Deck>
       </Spectacle>
