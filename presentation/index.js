@@ -28,12 +28,7 @@ require("spectacle/lib/themes/default/index.css");
 
 const images = {
   dockerLogo: require("../assets/moby.svg"),
-  sampleApp: require("../assets/sample-app.png"),
-
-  city: require("../assets/city.jpg"),
-  kat: require("../assets/kat.png"),
-  logo: require("../assets/formidable-logo.svg"),
-  markdown: require("../assets/markdown.png")
+  sampleApp: require("../assets/sample-app.png")
 };
 
 preloader(images);
@@ -47,7 +42,7 @@ export default class Presentation extends React.Component {
     return (
       <Spectacle theme={theme}>
         <Deck transition={["slide"]} transitionDuration={500} progress="number">
-          <Slide>
+          <Slide notes="Kontenerowiec">
             <Image src={images.dockerLogo.replace("/", "")} margin="0px auto 40px" height="293px"/>
             <Heading size={1} caps textColor="white">
               Docker
@@ -63,12 +58,12 @@ export default class Presentation extends React.Component {
             </Heading>
           </Slide>
 
-          <Slide>
+          <Slide notes="Lekka linuxowa wirtualizacja (windows hyper-v), ">
             <Heading size={1} caps>
               What is Docker?
             </Heading>
             <List>
-              <Appear><ListItem>Alpine Linux based (only 85MB)/Window Server Core (not that light :P)</ListItem></Appear>
+              <Appear><ListItem>Linux based/Windows Server Core</ListItem></Appear>
               <Appear><ListItem>Light Virtualization Technology</ListItem></Appear>
               <Appear><ListItem>Container solution</ListItem></Appear>
               <Appear><ListItem>Works on Linux, OS X, Windows</ListItem></Appear>
@@ -160,10 +155,10 @@ export default class Presentation extends React.Component {
               { loc: [0, 14], title: "Frontend Dockerfile" },
               { loc: [0, 1], title: "Base image" },
               { loc: [3, 4], title: "Workdir" },
-              { loc: [6, 7], title: "Copy" },
-              { loc: [8, 10], title: "Build" },
-              { loc: [11, 12], title: "Ports" },
-              { loc: [12, 13], title: "Command" }
+              { loc: [5, 6], title: "Copy" },
+              { loc: [7, 9], title: "Build" },
+              { loc: [10, 11], title: "Ports" },
+              { loc: [11, 12], title: "Command" }
             ]}
           />
 
@@ -223,7 +218,7 @@ export default class Presentation extends React.Component {
               { loc: [0, 100], title: "Docker Compose" },
               { loc: [22, 100], title: "Database" },
               { loc: [12, 22], title: "Backend" },
-              { loc: [2, 11], title: "Frontend" }
+              { loc: [2, 12], title: "Frontend" }
             ]}
           />
 
@@ -233,6 +228,12 @@ export default class Presentation extends React.Component {
             </Heading>
             <Heading size={2} fit textColor="white" textFont="Monospace" margin="50px 0px">
               docker-compose up
+            </Heading>
+          </Slide>
+
+          <Slide>
+            <Heading size={1} textColor="white">
+              Last word
             </Heading>
           </Slide>
 
